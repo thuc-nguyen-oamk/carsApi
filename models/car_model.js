@@ -10,7 +10,7 @@ const car = {
     },
 
     add: (car, callback) => {
-        if ( Object.keys(car).length > 0 ) {  // car: object
+        if ( car && Object.keys(car).length > 0 ) {  // car: object
             db.query(
                 'insert into car(brand, model, yearmodel) values(?,?,?)',
                 [car.brand, car.model, car.yearmodel],
@@ -23,7 +23,7 @@ const car = {
     },
 
     update: (id, car, callback) => {
-        if ( Object.keys(car).length > 0 ) {
+        if ( car && Object.keys(car).length > 0 ) {
             db.query(
                 'update car set brand=?, model=?, yearmodel=? where idcar=?',
                 [car.brand, car.model, car.yearmodel, id],
@@ -35,7 +35,7 @@ const car = {
         }
     },
 
-    delete: (id, callback) => db.query('delete from car where id=?', [id], callback)
+    delete: (id, callback) => db.query('delete from car where idcar=?', [id], callback)
 }
 
 module.exports = car;

@@ -4,9 +4,9 @@ var car = require('../models/car_model.js');
 
 const defaultCallback = (err, dbResult, res) => {
     if (err) {
-        res.send(err);
+        res.json(err);
     } else {
-        res.send(dbResult);
+        res.json(dbResult);
     }
 }
 
@@ -18,6 +18,6 @@ router.post('/', (req, res) => car.add( req.body, (err, dbResult) => defaultCall
 
 router.put('/:id', (req, res) => car.update( req.params.id, req.body, (err, dbResult) => defaultCallback(err, dbResult, res) ));
 
-router.delete('/:id', (req, res) => car.delete( id, (err, dbResult) => defaultCallback(err, dbResult, res) ));
+router.delete('/:id', (req, res) => car.delete( req.params.id, (err, dbResult) => defaultCallback(err, dbResult, res) ));
 
 module.exports = router;
