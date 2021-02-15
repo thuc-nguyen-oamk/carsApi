@@ -20,4 +20,8 @@ router.put('/:id', (req, res) => car.update( req.params.id, req.body, (err, dbRe
 
 router.delete('/:id', (req, res) => car.delete( req.params.id, (err, dbResult) => defaultCallback(err, dbResult, res) ));
 
+router.get('/brand/:value', (req, res) => car.searchByBrand(req.params.value, (err, dbResult) => defaultCallback(err, dbResult, res) ) );
+
+router.get('/model/:value', (req, res) => car.searchByModel(req.params.value, (err, dbResult) => defaultCallback(err, dbResult, res) ) );
+
 module.exports = router;

@@ -35,7 +35,17 @@ const car = {
         }
     },
 
-    delete: (id, callback) => db.query('delete from car where idcar=?', [id], callback)
+    delete: (id, callback) => db.query('delete from car where idcar=?', [id], callback),
+
+    searchByBrand: (value, callback) => {
+        const likeString = `%${value}%`;
+        db.query('select * from car where brand like ?', [likeString], callback)
+    },
+
+    searchByModel: (value, callback) => {
+        const likeString = `%${value}%`;
+        db.query('select * from car where model like ?', [likeString], callback)
+    }
 }
 
 module.exports = car;
