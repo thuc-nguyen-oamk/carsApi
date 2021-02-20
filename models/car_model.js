@@ -30,7 +30,8 @@ const car = {
                 callback
             )
         } else {
-            console.log("\x1b[31m", 'ERROR: empty PUT body!!!', "\x1b[0m");  // red color -> message -> reset color
+            // console.log("\x1b[31m", 'ERROR: empty PUT body!!!', "\x1b[0m");  // red color -> message -> reset color
+            throw new Error('Empty PUT body!');
             return;
         }
     },
