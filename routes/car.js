@@ -3,16 +3,12 @@ var router = express.Router();
 var car = require('../models/car_model.js');
 
 const defaultCallback = (err, dbResult, res) => {
-    if (err) {
-        res.json(err);
-    } else {
-        res.json(dbResult);
-    }
+    err ? res.json(err) : res.json(dbResult);
 }
 
 router.get('/', (req, res) => car.getAll( (err, dbResult) => defaultCallback(err, dbResult, res) ));
 
-router.get('/:id', (req, res) => car.getById( req.params.id, (err, dbResult) => defaultCallback(err, dbResult, res) ));
+router.get('/:id', (req, res) => car.getById( req.params.id, (err, dbResult) => defaultCallback(err, dbResult[0], res) ));
 
 router.post('/', (req, res) => car.add( req.body, (err, dbResult) => defaultCallback(err, dbResult, res) ));
 
